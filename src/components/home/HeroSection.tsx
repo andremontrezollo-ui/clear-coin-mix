@@ -1,0 +1,95 @@
+import { Link } from "react-router-dom";
+import { ArrowRight, Shield, Clock, Shuffle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const steps = [
+  {
+    icon: Shield,
+    title: "Envie",
+    description: "Transfira BTC para um endereço único gerado para você",
+  },
+  {
+    icon: Shuffle,
+    title: "Processe",
+    description: "Fundos são dissociados através de nosso sistema",
+  },
+  {
+    icon: Clock,
+    title: "Receba",
+    description: "Receba em novos endereços com delay configurável",
+  },
+];
+
+export function HeroSection() {
+  return (
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-dark" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-primary/10 via-transparent to-transparent" />
+      <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-20 left-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-float animation-delay-300" />
+
+      <div className="container relative mx-auto px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8 animate-fade-up">
+            <Shield className="h-4 w-4" />
+            <span>Privacidade para transações Bitcoin</span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 animate-fade-up animation-delay-100">
+            Dissociação de{" "}
+            <span className="gradient-text">origem e destino</span>
+            <br />
+            para suas transações
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up animation-delay-200">
+            Um serviço de mixing que quebra a rastreabilidade entre seus endereços Bitcoin,
+            oferecendo uma camada adicional de privacidade financeira.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up animation-delay-300">
+            <Button variant="hero" size="xl" asChild>
+              <Link to="/como-funciona">
+                Entender como funciona
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="xl" asChild>
+              <Link to="/mixing">
+                Iniciar operação
+              </Link>
+            </Button>
+          </div>
+
+          {/* 3 Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-up animation-delay-400">
+            {steps.map((step, index) => (
+              <div key={step.title} className="relative group">
+                <div className="glass-card p-6 text-center hover:border-primary/30 transition-all duration-300">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                    <step.icon className="h-7 w-7" />
+                  </div>
+                  <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-sm font-bold text-primary">
+                    {index + 1}
+                  </div>
+                  <h3 className="font-heading font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
+                    <ArrowRight className="h-5 w-5 text-primary/50 flow-arrow" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
