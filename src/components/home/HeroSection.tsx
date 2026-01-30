@@ -54,14 +54,14 @@ export function HeroSection() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up animation-delay-300">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/como-funciona">
-                Entender como funciona
+              <Link to="/mixing">
+                Iniciar operação
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" asChild>
-              <Link to="/mixing">
-                Iniciar operação
+              <Link to="/como-funciona">
+                Entender como funciona
               </Link>
             </Button>
           </div>
