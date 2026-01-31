@@ -16,7 +16,6 @@ const transparencyItems = [
     icon: XCircle,
     title: "O que NÃO fazemos",
     items: [
-      "Não garantimos anonimato absoluto",
       "Não revertemos transações após confirmação",
       "Não armazenamos dados além do necessário",
       "Não oferecemos suporte a atividades ilícitas",
