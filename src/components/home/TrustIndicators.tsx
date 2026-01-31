@@ -3,33 +3,33 @@ import { Lock, Eye, Zap, Server, Trash2, Globe } from "lucide-react";
 const indicators = [
   {
     icon: Lock,
-    title: "Endereços únicos",
-    description: "Cada operação recebe um endereço exclusivo, sem reuso",
+    title: "Unique addresses",
+    description: "Each operation receives an exclusive address, no reuse",
   },
   {
     icon: Eye,
-    title: "Logs minimizados",
-    description: "Retenção mínima de dados, limpeza automática progressiva",
+    title: "Minimized logs",
+    description: "Minimal data retention, progressive automatic cleanup",
   },
   {
     icon: Zap,
-    title: "Processamento rápido",
-    description: "Sistema otimizado para confirmações eficientes",
+    title: "Fast processing",
+    description: "System optimized for efficient confirmations",
   },
   {
     icon: Server,
-    title: "Pool de liquidez",
-    description: "Dissociação estrutural entre entradas e saídas",
+    title: "Liquidity pool",
+    description: "Structural dissociation between inputs and outputs",
   },
   {
     icon: Trash2,
-    title: "Sem rastros",
-    description: "Metadados sensíveis são removidos automaticamente",
+    title: "No traces",
+    description: "Sensitive metadata is automatically removed",
   },
   {
     icon: Globe,
-    title: "Acesso global",
-    description: "Serviço acessível sem restrições geográficas",
+    title: "Global access",
+    description: "Service accessible without geographic restrictions",
   },
 ];
 
@@ -39,10 +39,10 @@ export function TrustIndicators() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Princípios <span className="gradient-text">operacionais</span>
+            Operational <span className="gradient-text">principles</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Não fazemos promessas que não podemos cumprir. Estes são os princípios que guiam nossa operação.
+            We don't make promises we can't keep. These are the principles that guide our operation.
           </p>
         </div>
 

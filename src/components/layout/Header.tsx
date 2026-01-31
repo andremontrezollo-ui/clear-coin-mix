@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Início", href: "/" },
-  { label: "Como Funciona", href: "/como-funciona" },
-  { label: "Taxas", href: "/taxas" },
+  { label: "Home", href: "/" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Fees", href: "/fees" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contato", href: "/contato" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {
@@ -51,7 +51,7 @@ export function Header() {
 
           <div className="hidden md:block">
             <Button variant="hero" size="sm" asChild>
-              <Link to="/mixing">Iniciar Mixing</Link>
+              <Link to="/mixing">Start Mixing</Link>
             </Button>
           </div>
 
@@ -85,7 +85,7 @@ export function Header() {
               ))}
               <Button variant="hero" className="mt-2" asChild>
                 <Link to="/mixing" onClick={() => setIsOpen(false)}>
-                  Iniciar Mixing
+                  Start Mixing
                 </Link>
               </Button>
             </nav>

@@ -7,48 +7,48 @@ const flowSteps = [
   {
     icon: Wallet,
     step: "01",
-    title: "Entrada de Fundos",
-    description: "Você envia Bitcoin para um endereço único gerado exclusivamente para sua operação. Este endereço nunca é reutilizado.",
+    title: "Fund Entry",
+    description: "You send Bitcoin to a unique address generated exclusively for your operation. This address is never reused.",
     details: [
-      "Endereço gerado sob demanda",
-      "Monitoramento automático de confirmações",
-      "Nenhuma associação com operações anteriores",
+      "Address generated on demand",
+      "Automatic confirmation monitoring",
+      "No association with previous operations",
     ],
     color: "primary",
   },
   {
     icon: Shuffle,
     step: "02", 
-    title: "Processamento",
-    description: "Seus fundos entram em nosso pool de liquidez, onde são dissociados estruturalmente de sua origem.",
+    title: "Processing",
+    description: "Your funds enter our liquidity pool, where they are structurally dissociated from their origin.",
     details: [
-      "Pool compartilhado de múltiplos usuários",
-      "Quebra de correlação temporal",
-      "Fragmentação de valores",
+      "Shared pool from multiple users",
+      "Temporal correlation breaking",
+      "Value fragmentation",
     ],
     color: "accent",
   },
   {
     icon: Clock,
     step: "03",
-    title: "Distribuição Temporal",
-    description: "As saídas são programadas com delays variáveis, eliminando correlação temporal direta com a entrada.",
+    title: "Temporal Distribution",
+    description: "Outputs are scheduled with variable delays, eliminating direct temporal correlation with the input.",
     details: [
-      "Delays configuráveis pelo usuário",
-      "Janelas de tempo aleatorizadas",
-      "Múltiplas transações de saída",
+      "User-configurable delays",
+      "Randomized time windows",
+      "Multiple output transactions",
     ],
     color: "primary",
   },
   {
     icon: CheckCircle2,
     step: "04",
-    title: "Recebimento",
-    description: "Você recebe os fundos em seus endereços de destino, com valores fragmentados e sem ligação rastreável à origem.",
+    title: "Receipt",
+    description: "You receive the funds at your destination addresses, with fragmented values and no traceable link to the origin.",
     details: [
-      "Múltiplos endereços de destino",
-      "Valores distribuídos conforme configuração",
-      "Transações independentes",
+      "Multiple destination addresses",
+      "Values distributed per configuration",
+      "Independent transactions",
     ],
     color: "success",
   },
@@ -64,10 +64,10 @@ export default function HowItWorks() {
         
         <div className="container relative mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            Como o <span className="gradient-text">mixing</span> funciona
+            How <span className="gradient-text">mixing</span> works
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Entenda o processo de dissociação de fundos em 4 etapas simples
+            Understand the fund dissociation process in 4 simple steps
           </p>
         </div>
       </section>
@@ -122,7 +122,7 @@ export default function HowItWorks() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-center mb-12">
-              Diagrama <span className="gradient-text">simplificado</span>
+              Simplified <span className="gradient-text">diagram</span>
             </h2>
 
             <div className="glass-card p-8 md:p-12">
@@ -133,8 +133,8 @@ export default function HowItWorks() {
                   <div className="w-24 h-24 rounded-2xl bg-secondary flex items-center justify-center mx-auto mb-4">
                     <Wallet className="h-10 w-10 text-foreground" />
                   </div>
-                  <p className="font-heading font-semibold">Sua Carteira</p>
-                  <p className="text-sm text-muted-foreground">Origem</p>
+                  <p className="font-heading font-semibold">Your Wallet</p>
+                  <p className="text-sm text-muted-foreground">Origin</p>
                 </div>
 
                 <ArrowRight className="h-8 w-8 text-primary hidden md:block flow-arrow" />
@@ -146,8 +146,8 @@ export default function HowItWorks() {
                     <div className="absolute inset-2 rounded-full border-2 border-dashed border-primary/30 animate-spin" style={{ animationDuration: "20s" }} />
                     <Shuffle className="h-12 w-12 text-primary" />
                   </div>
-                  <p className="font-heading font-semibold">Pool de Liquidez</p>
-                  <p className="text-sm text-muted-foreground">Dissociação</p>
+                  <p className="font-heading font-semibold">Liquidity Pool</p>
+                  <p className="text-sm text-muted-foreground">Dissociation</p>
                 </div>
 
                 <ArrowRight className="h-8 w-8 text-primary hidden md:block flow-arrow" />
@@ -163,8 +163,8 @@ export default function HowItWorks() {
                       <CheckCircle2 className="h-6 w-6 text-success" />
                     </div>
                   </div>
-                  <p className="font-heading font-semibold">Destinos</p>
-                  <p className="text-sm text-muted-foreground">Múltiplas saídas</p>
+                  <p className="font-heading font-semibold">Destinations</p>
+                  <p className="text-sm text-muted-foreground">Multiple outputs</p>
                 </div>
               </div>
             </div>
@@ -176,20 +176,20 @@ export default function HowItWorks() {
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
-            Pronto para começar?
+            Ready to start?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            Configure sua operação de mixing em poucos minutos
+            Configure your mixing operation in just a few minutes
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" asChild>
               <Link to="/mixing">
-                Iniciar Mixing
+                Start Mixing
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/taxas">Ver Taxas</Link>
+              <Link to="/fees">View Fees</Link>
             </Button>
           </div>
         </div>

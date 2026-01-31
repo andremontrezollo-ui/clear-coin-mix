@@ -5,18 +5,18 @@ import { Button } from "@/components/ui/button";
 const steps = [
   {
     icon: Shield,
-    title: "Envie",
-    description: "Transfira BTC para um endereço único gerado para você",
+    title: "Send",
+    description: "Transfer BTC to a unique address generated for you",
   },
   {
     icon: Shuffle,
-    title: "Processe",
-    description: "Fundos são dissociados através de nosso sistema",
+    title: "Process",
+    description: "Funds are dissociated through our system",
   },
   {
     icon: Clock,
-    title: "Receba",
-    description: "Receba em novos endereços com delay configurável",
+    title: "Receive",
+    description: "Receive at new addresses with configurable delay",
   },
 ];
 
@@ -34,28 +34,28 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8 animate-fade-up">
             <Shield className="h-4 w-4" />
-            <span>Privacidade para transações Bitcoin</span>
+            <span>Privacy for Bitcoin transactions</span>
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 animate-fade-up animation-delay-100">
-            Dissociação de{" "}
-            <span className="gradient-text">origem e destino</span>
+            Origin and destination{" "}
+            <span className="gradient-text">dissociation</span>
             <br />
-            para suas transações
+            for your transactions
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up animation-delay-200">
-            Um serviço de mixing que quebra a rastreabilidade entre seus endereços Bitcoin,
-            oferecendo uma camada adicional de privacidade financeira.
+            A mixing service that breaks the traceability between your Bitcoin addresses,
+            offering an additional layer of financial privacy.
           </p>
 
           {/* CTA */}
           <div className="flex items-center justify-center mb-16 animate-fade-up animation-delay-300">
             <Button variant="hero" size="xl" asChild>
               <Link to="/mixing">
-                Iniciar operação
+                Start operation
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>

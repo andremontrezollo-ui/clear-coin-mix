@@ -34,10 +34,10 @@ export default function Contact() {
         
         <div className="container relative mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="gradient-text">Contato</span>
+            <span className="gradient-text">Contact</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Canal de comunicação seguro e anônimo
+            Secure and anonymous communication channel
           </p>
         </div>
       </section>
@@ -52,17 +52,17 @@ export default function Contact() {
                 {!submitted ? (
                   <>
                     <h2 className="font-heading font-semibold text-xl mb-6">
-                      Enviar Mensagem
+                      Send Message
                     </h2>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div>
                         <Label htmlFor="subject" className="text-muted-foreground">
-                          Assunto
+                          Subject
                         </Label>
                         <Input
                           id="subject"
-                          placeholder="Descreva brevemente sua questão"
+                          placeholder="Briefly describe your question"
                           className="mt-2"
                           required
                         />
@@ -70,11 +70,11 @@ export default function Contact() {
 
                       <div>
                         <Label htmlFor="message" className="text-muted-foreground">
-                          Mensagem
+                          Message
                         </Label>
                         <Textarea
                           id="message"
-                          placeholder="Detalhe sua dúvida ou problema"
+                          placeholder="Detail your question or issue"
                           className="mt-2 min-h-[150px]"
                           required
                         />
@@ -82,7 +82,7 @@ export default function Contact() {
 
                       <div>
                         <Label htmlFor="reply" className="text-muted-foreground">
-                          Contato para resposta (opcional)
+                          Reply contact (optional)
                         </Label>
                         <Input
                           id="reply"
@@ -90,13 +90,13 @@ export default function Contact() {
                           className="mt-2"
                         />
                         <p className="text-xs text-muted-foreground mt-2">
-                          Você pode deixar em branco e usar o ID do ticket para verificar respostas
+                          You can leave blank and use the ticket ID to check replies
                         </p>
                       </div>
 
                       <Button variant="hero" type="submit" className="w-full">
                         <Mail className="h-4 w-4 mr-2" />
-                        Enviar Mensagem
+                        Send Message
                       </Button>
                     </form>
                   </>
@@ -106,15 +106,15 @@ export default function Contact() {
                       <CheckCircle2 className="h-8 w-8 text-success" />
                     </div>
                     <h2 className="font-heading font-semibold text-xl mb-2">
-                      Mensagem Enviada
+                      Message Sent
                     </h2>
                     <p className="text-muted-foreground mb-6">
-                      Sua mensagem foi recebida com sucesso
+                      Your message has been received successfully
                     </p>
                     
                     <div className="p-4 rounded-xl bg-secondary border border-primary/30 mb-6">
                       <p className="text-sm text-muted-foreground mb-2">
-                        ID do Ticket
+                        Ticket ID
                       </p>
                       <code className="text-2xl font-mono font-bold text-primary">
                         {ticketId}
@@ -122,7 +122,7 @@ export default function Contact() {
                     </div>
 
                     <p className="text-sm text-muted-foreground">
-                      Guarde este ID para acompanhar sua solicitação
+                      Save this ID to track your request
                     </p>
 
                     <Button
@@ -130,7 +130,7 @@ export default function Contact() {
                       className="mt-6"
                       onClick={() => setSubmitted(false)}
                     >
-                      Enviar nova mensagem
+                      Send new message
                     </Button>
                   </div>
                 )}
@@ -144,10 +144,10 @@ export default function Contact() {
                       <Shield className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-heading font-semibold mb-1">Privacidade</h3>
+                      <h3 className="font-heading font-semibold mb-1">Privacy</h3>
                       <p className="text-sm text-muted-foreground">
-                        Não coletamos dados pessoais obrigatórios. Seu contato 
-                        para resposta é opcional.
+                        We don't collect mandatory personal data. Your reply 
+                        contact is optional.
                       </p>
                     </div>
                   </div>
@@ -159,10 +159,10 @@ export default function Contact() {
                       <Clock className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-heading font-semibold mb-1">Tempo de Resposta</h3>
+                      <h3 className="font-heading font-semibold mb-1">Response Time</h3>
                       <p className="text-sm text-muted-foreground">
-                        Respondemos tipicamente em 24-48 horas. Não garantimos 
-                        tempo de resposta específico.
+                        We typically respond within 24-48 hours. We don't guarantee 
+                        specific response times.
                       </p>
                     </div>
                   </div>
@@ -174,10 +174,10 @@ export default function Contact() {
                       <Key className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-heading font-semibold mb-1">Comunicação Cifrada</h3>
+                      <h3 className="font-heading font-semibold mb-1">Encrypted Communication</h3>
                       <p className="text-sm text-muted-foreground">
-                        Para comunicações sensíveis, você pode usar nossa 
-                        chave PGP pública disponível abaixo.
+                        For sensitive communications, you can use our 
+                        public PGP key available below.
                       </p>
                     </div>
                   </div>
@@ -187,19 +187,19 @@ export default function Contact() {
                 <div className="glass-card p-6">
                   <h3 className="font-heading font-semibold mb-4 flex items-center gap-2">
                     <Key className="h-4 w-4 text-primary" />
-                    Chave PGP Pública
+                    Public PGP Key
                   </h3>
                   <div className="p-4 rounded-lg bg-secondary font-mono text-xs text-muted-foreground overflow-x-auto">
                     <pre className="whitespace-pre-wrap break-all">
 {`-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-mQINBGXxxx... (chave exemplo)
+mQINBGXxxx... (example key)
 ...
 -----END PGP PUBLIC KEY BLOCK-----`}
                     </pre>
                   </div>
                   <Button variant="ghost" size="sm" className="mt-4">
-                    Copiar Chave Completa
+                    Copy Full Key
                   </Button>
                 </div>
 
@@ -207,11 +207,10 @@ mQINBGXxxx... (chave exemplo)
                 <div className="p-4 rounded-xl bg-warning/5 border border-warning/20 flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-warning shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium text-warning mb-1">Atenção</p>
+                    <p className="font-medium text-warning mb-1">Warning</p>
                     <p className="text-sm text-muted-foreground">
-                      Nunca pediremos seeds, chaves privadas, ou que você 
-                      envie fundos adicionais. Qualquer solicitação desse 
-                      tipo é tentativa de fraude.
+                      We will never ask for seeds, private keys, or for you to 
+                      send additional funds. Any such request is a fraud attempt.
                     </p>
                   </div>
                 </div>
