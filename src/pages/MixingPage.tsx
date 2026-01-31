@@ -99,19 +99,19 @@ export default function MixingPage() {
             {/* Header */}
             <div className="text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Configurar <span className="gradient-text">Mixing</span>
+                Configure <span className="gradient-text">Mixing</span>
               </h1>
               <p className="text-muted-foreground">
-                Configure os parâmetros da sua operação de mixing
+                Configure the parameters for your mixing operation
               </p>
             </div>
 
             {/* Progress Steps */}
             <div className="flex items-center justify-center gap-4 mb-12">
               {[
-                { key: "configure", label: "Configurar", icon: Wallet },
-                { key: "confirm", label: "Confirmar", icon: CheckCircle2 },
-                { key: "deposit", label: "Depositar", icon: Clock },
+                { key: "configure", label: "Configure", icon: Wallet },
+                { key: "confirm", label: "Confirm", icon: CheckCircle2 },
+                { key: "deposit", label: "Deposit", icon: Clock },
               ].map((s, index) => (
                 <div key={s.key} className="flex items-center gap-4">
                   <div
@@ -140,10 +140,10 @@ export default function MixingPage() {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h2 className="font-heading font-semibold text-lg mb-1">
-                        Endereços de Destino
+                        Destination Addresses
                       </h2>
                       <p className="text-sm text-muted-foreground">
-                        Onde você deseja receber os fundos após o mixing
+                        Where you want to receive funds after mixing
                       </p>
                     </div>
                     <Button
@@ -153,7 +153,7 @@ export default function MixingPage() {
                       disabled={destinations.length >= 5}
                     >
                       <Plus className="h-4 w-4 mr-1" />
-                      Adicionar
+                      Add
                     </Button>
                   </div>
 
@@ -167,10 +167,10 @@ export default function MixingPage() {
                           <div className="flex-1 space-y-4">
                             <div>
                               <Label className="text-sm text-muted-foreground mb-2 block">
-                                Endereço Bitcoin #{index + 1}
+                                Bitcoin Address #{index + 1}
                               </Label>
                               <Input
-                                placeholder="bc1q... ou 3... ou 1..."
+                                placeholder="bc1q... or 3... or 1..."
                                 value={dest.address}
                                 onChange={(e) =>
                                   updateAddress(dest.id, e.target.value)
@@ -187,7 +187,7 @@ export default function MixingPage() {
                             </div>
                             <div>
                               <Label className="text-sm text-muted-foreground mb-2 block">
-                                Porcentagem: {dest.percentage}%
+                                Percentage: {dest.percentage}%
                               </Label>
                               <Slider
                                 value={[dest.percentage]}
@@ -220,7 +220,7 @@ export default function MixingPage() {
                     <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/20 flex items-center gap-2">
                       <AlertTriangle className="h-4 w-4 text-warning" />
                       <span className="text-sm text-warning">
-                        Total deve ser 100%. Atual: {totalPercentage}%
+                        Total must be 100%. Current: {totalPercentage}%
                       </span>
                     </div>
                   )}
@@ -230,18 +230,18 @@ export default function MixingPage() {
                 <div className="glass-card p-6 md:p-8">
                   <div className="mb-6">
                     <h2 className="font-heading font-semibold text-lg mb-1">
-                      Delay de Processamento
+                      Processing Delay
                     </h2>
                     <p className="text-sm text-muted-foreground">
-                      Tempo de espera entre a confirmação do depósito e as saídas
+                      Wait time between deposit confirmation and outputs
                     </p>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Delay mínimo</span>
+                      <span className="text-muted-foreground">Minimum delay</span>
                       <span className="font-heading font-semibold text-primary">
-                        {delay[0]} {delay[0] === 1 ? "hora" : "horas"}
+                        {delay[0]} {delay[0] === 1 ? "hour" : "hours"}
                       </span>
                     </div>
                     <Slider
@@ -253,16 +253,16 @@ export default function MixingPage() {
                       className="w-full"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground">
-                      <span>Imediato</span>
-                      <span>24 horas</span>
+                      <span>Immediate</span>
+                      <span>24 hours</span>
                     </div>
                   </div>
 
                   <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/10 flex items-start gap-2">
                     <Info className="h-4 w-4 text-primary mt-0.5" />
                     <span className="text-sm text-muted-foreground">
-                      Delays maiores aumentam a privacidade, mas atrasam o recebimento.
-                      Recomendamos pelo menos 2 horas.
+                      Longer delays increase privacy but delay receipt.
+                      We recommend at least 2 hours.
                     </span>
                   </div>
                 </div>
@@ -271,10 +271,10 @@ export default function MixingPage() {
                 <div className="p-4 rounded-xl bg-warning/5 border border-warning/20 flex items-start gap-3">
                   <AlertTriangle className="h-5 w-5 text-warning shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium text-warning mb-1">Atenção: Operação Irreversível</p>
+                    <p className="font-medium text-warning mb-1">Warning: Irreversible Operation</p>
                     <p className="text-sm text-muted-foreground">
-                      Após confirmar e enviar os fundos, a operação não pode ser cancelada ou revertida.
-                      Verifique todos os endereços cuidadosamente.
+                      After confirming and sending funds, the operation cannot be canceled or reversed.
+                      Check all addresses carefully.
                     </p>
                   </div>
                 </div>
@@ -286,7 +286,7 @@ export default function MixingPage() {
                   onClick={() => setStep("confirm")}
                   disabled={!allAddressesValid || totalPercentage !== 100}
                 >
-                  Revisar Configuração
+                  Review Configuration
                 </Button>
               </div>
             )}
@@ -296,12 +296,12 @@ export default function MixingPage() {
               <div className="space-y-8 animate-fade-up">
                 <div className="glass-card p-6 md:p-8">
                   <h2 className="font-heading font-semibold text-lg mb-6">
-                    Resumo da Operação
+                    Operation Summary
                   </h2>
 
                   <div className="space-y-6">
                     <div>
-                      <p className="text-sm text-muted-foreground mb-3">Endereços de destino</p>
+                      <p className="text-sm text-muted-foreground mb-3">Destination addresses</p>
                       {destinations.map((dest, index) => (
                         <div
                           key={dest.id}
@@ -320,10 +320,10 @@ export default function MixingPage() {
                     <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50">
                       <div className="flex items-center gap-2">
                         <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">Delay configurado</span>
+                        <span className="text-muted-foreground">Configured delay</span>
                       </div>
                       <span className="font-semibold">
-                        {delay[0]} {delay[0] === 1 ? "hora" : "horas"}
+                        {delay[0]} {delay[0] === 1 ? "hour" : "hours"}
                       </span>
                     </div>
                   </div>
@@ -336,7 +336,7 @@ export default function MixingPage() {
                     className="flex-1"
                     onClick={() => setStep("configure")}
                   >
-                    Voltar
+                    Back
                   </Button>
                   <Button
                     variant="hero"
@@ -344,7 +344,7 @@ export default function MixingPage() {
                     className="flex-1"
                     onClick={() => setStep("deposit")}
                   >
-                    Confirmar e Gerar Endereço
+                    Confirm and Generate Address
                   </Button>
                 </div>
               </div>
@@ -359,15 +359,15 @@ export default function MixingPage() {
                   </div>
 
                   <h2 className="font-heading font-semibold text-xl mb-2">
-                    Operação Configurada
+                    Operation Configured
                   </h2>
                   <p className="text-muted-foreground mb-8">
-                    Envie Bitcoin para o endereço abaixo para iniciar o mixing
+                    Send Bitcoin to the address below to start mixing
                   </p>
 
                   {/* Deposit Address */}
                   <div className="p-6 rounded-xl bg-secondary border-2 border-primary/30 mb-6">
-                    <p className="text-sm text-muted-foreground mb-2">Endereço de Depósito</p>
+                    <p className="text-sm text-muted-foreground mb-2">Deposit Address</p>
                     <div className="flex items-center gap-2 justify-center">
                       <code className="font-mono text-lg md:text-xl break-all">
                         {depositAddress}
@@ -394,13 +394,13 @@ export default function MixingPage() {
 
                   <div className="p-4 rounded-lg bg-primary/5 border border-primary/10 text-left">
                     <p className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">Próximos passos:</strong>
+                      <strong className="text-foreground">Next steps:</strong>
                       <br />
-                      1. Envie qualquer quantia de BTC para o endereço acima
+                      1. Send any amount of BTC to the address above
                       <br />
-                      2. Aguarde pelo menos 1 confirmação na rede
+                      2. Wait for at least 1 network confirmation
                       <br />
-                      3. Os fundos serão processados e enviados aos destinos configurados
+                      3. Funds will be processed and sent to configured destinations
                     </p>
                   </div>
                 </div>
@@ -411,7 +411,7 @@ export default function MixingPage() {
                   className="w-full"
                   onClick={() => setStep("configure")}
                 >
-                  Nova Operação
+                  New Operation
                 </Button>
               </div>
             )}

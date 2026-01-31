@@ -28,10 +28,10 @@ export default function Fees() {
         
         <div className="container relative mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            Taxas <span className="gradient-text">transparentes</span>
+            Transparent <span className="gradient-text">fees</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Sem custos ocultos. Veja exatamente quanto você pagará antes de iniciar.
+            No hidden costs. See exactly how much you'll pay before starting.
           </p>
         </div>
       </section>
@@ -46,11 +46,11 @@ export default function Fees() {
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                   <Percent className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-heading font-semibold text-xl mb-2">Taxa de Serviço</h3>
+                <h3 className="font-heading font-semibold text-xl mb-2">Service Fee</h3>
                 <p className="text-3xl font-heading font-bold gradient-text mb-4">1.5%</p>
                 <p className="text-muted-foreground text-sm">
-                  Taxa fixa sobre o valor total da operação. Aplicada uma única vez, 
-                  independente do número de endereços de destino.
+                  Fixed fee on the total operation value. Applied once, 
+                  regardless of the number of destination addresses.
                 </p>
               </div>
 
@@ -59,11 +59,11 @@ export default function Fees() {
                 <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
                   <Zap className="h-7 w-7 text-accent" />
                 </div>
-                <h3 className="font-heading font-semibold text-xl mb-2">Taxa de Rede</h3>
-                <p className="text-3xl font-heading font-bold text-accent mb-4">Variável</p>
+                <h3 className="font-heading font-semibold text-xl mb-2">Network Fee</h3>
+                <p className="text-3xl font-heading font-bold text-accent mb-4">Variable</p>
                 <p className="text-muted-foreground text-sm">
-                  Custo da transação na blockchain Bitcoin. Varia conforme 
-                  congestionamento da rede. Estimativa atualizada em tempo real.
+                  Bitcoin blockchain transaction cost. Varies according to 
+                  network congestion. Real-time updated estimate.
                 </p>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function Fees() {
             <div className="glass-card p-8 md:p-10">
               <div className="flex items-center gap-3 mb-8">
                 <Calculator className="h-6 w-6 text-primary" />
-                <h2 className="font-heading font-semibold text-2xl">Calculadora de Taxas</h2>
+                <h2 className="font-heading font-semibold text-2xl">Fee Calculator</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -80,7 +80,7 @@ export default function Fees() {
                 <div className="space-y-6">
                   <div>
                     <Label className="text-muted-foreground mb-2 block">
-                      Valor a enviar (BTC)
+                      Amount to send (BTC)
                     </Label>
                     <Input
                       type="number"
@@ -94,7 +94,7 @@ export default function Fees() {
 
                   <div>
                     <Label className="text-muted-foreground mb-2 block">
-                      Delay: {delay[0]} {delay[0] === 1 ? "hora" : "horas"}
+                      Delay: {delay[0]} {delay[0] === 1 ? "hour" : "hours"}
                     </Label>
                     <Slider
                       value={delay}
@@ -104,7 +104,7 @@ export default function Fees() {
                       step={1}
                     />
                     <p className="text-xs text-muted-foreground mt-2">
-                      O delay não afeta as taxas
+                      Delay does not affect fees
                     </p>
                   </div>
                 </div>
@@ -112,26 +112,26 @@ export default function Fees() {
                 {/* Output */}
                 <div className="p-6 rounded-xl bg-secondary/50 space-y-4">
                   <div className="flex justify-between items-center pb-4 border-b border-border/50">
-                    <span className="text-muted-foreground">Valor de entrada</span>
+                    <span className="text-muted-foreground">Input value</span>
                     <span className="font-mono font-semibold">{amount.toFixed(8)} BTC</span>
                   </div>
                   
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Taxa de serviço (1.5%)</span>
+                    <span className="text-muted-foreground">Service fee (1.5%)</span>
                     <span className="font-mono text-destructive">
                       -{serviceFeeAmount.toFixed(8)} BTC
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Taxa de rede (est.)</span>
+                    <span className="text-muted-foreground">Network fee (est.)</span>
                     <span className="font-mono text-destructive">
                       -{networkFeeEstimate.toFixed(8)} BTC
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center pt-4 border-t border-border/50">
-                    <span className="font-semibold">Valor de saída</span>
+                    <span className="font-semibold">Output value</span>
                     <span className="font-mono font-bold text-lg text-primary">
                       {outputAmount.toFixed(8)} BTC
                     </span>
@@ -142,8 +142,8 @@ export default function Fees() {
               <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/10 flex items-start gap-3">
                 <Info className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <p className="text-sm text-muted-foreground">
-                  Os valores de saída são estimativas. A taxa de rede real pode variar 
-                  dependendo do estado da mempool no momento da transação.
+                  Output values are estimates. The actual network fee may vary 
+                  depending on the mempool state at the time of the transaction.
                 </p>
               </div>
             </div>
@@ -152,7 +152,7 @@ export default function Fees() {
             <div className="mt-12 text-center">
               <Button variant="hero" size="lg" asChild>
                 <Link to="/mixing">
-                  Iniciar Mixing
+                  Start Mixing
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
@@ -166,22 +166,22 @@ export default function Fees() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-heading font-bold text-center mb-12">
-              Perguntas sobre taxas
+              Questions about fees
             </h2>
 
             <div className="space-y-6">
               {[
                 {
-                  q: "Por que a taxa de serviço é fixa em 1.5%?",
-                  a: "Mantemos uma taxa fixa para garantir previsibilidade. Isso cobre os custos operacionais do pool de liquidez e infraestrutura.",
+                  q: "Why is the service fee fixed at 1.5%?",
+                  a: "We maintain a fixed fee to ensure predictability. This covers the operational costs of the liquidity pool and infrastructure.",
                 },
                 {
-                  q: "A taxa muda com o número de destinos?",
-                  a: "Não. A taxa de serviço é a mesma independente de você usar 1 ou 5 endereços de destino. A taxa de rede pode aumentar marginalmente por transação adicional.",
+                  q: "Does the fee change with the number of destinations?",
+                  a: "No. The service fee is the same whether you use 1 or 5 destination addresses. The network fee may increase marginally per additional transaction.",
                 },
                 {
-                  q: "Posso pagar menos esperando mais?",
-                  a: "O delay não afeta as taxas cobradas. No entanto, a taxa de rede Bitcoin varia ao longo do dia - períodos de menor congestionamento podem resultar em custos menores.",
+                  q: "Can I pay less by waiting longer?",
+                  a: "The delay does not affect the fees charged. However, Bitcoin network fees vary throughout the day - periods of lower congestion may result in lower costs.",
                 },
               ].map((item, index) => (
                 <div key={index} className="glass-card p-6">
