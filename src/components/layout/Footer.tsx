@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Shield, Lock, Eye, FileText } from "lucide-react";
+import { FOOTER_LINKS } from "@/lib/constants";
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border/50 bg-card/30">
       <div className="container mx-auto px-4 py-12">
@@ -23,12 +26,7 @@ export function Footer() {
               Navigation
             </h4>
             <ul className="space-y-2">
-              {[
-                { label: "Home", href: "/" },
-                { label: "How It Works", href: "/how-it-works" },
-                { label: "Fees", href: "/fees" },
-                { label: "FAQ", href: "/faq" },
-              ].map((item) => (
+              {FOOTER_LINKS.navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     to={item.href}
@@ -47,16 +45,16 @@ export function Footer() {
               Legal
             </h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
+              {FOOTER_LINKS.legal.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    to={item.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -85,7 +83,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} ShadowMix. Autonomously operated service.
+              © {currentYear} ShadowMix. Autonomously operated service.
             </p>
             <p className="text-xs text-muted-foreground">
               This service offers no absolute guarantees. Use at your own risk.

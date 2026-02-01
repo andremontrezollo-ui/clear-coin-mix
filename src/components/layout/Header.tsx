@@ -3,18 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Fees", href: "/fees" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-];
+import { NAV_ITEMS } from "@/lib/constants";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
@@ -32,8 +27,8 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+            {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
@@ -43,6 +38,7 @@ export function Header() {
                     ? "text-primary bg-primary/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                 )}
+                aria-current={location.pathname === item.href ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -59,6 +55,8 @@ export function Header() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-foreground"
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -67,24 +65,25 @@ export function Header() {
         {/* Mobile Nav */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border/50 animate-fade-up">
-            <nav className="flex flex-col gap-2">
-              {navItems.map((item) => (
+            <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
+              {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={closeMenu}
                   className={cn(
                     "px-4 py-3 text-sm font-medium rounded-lg transition-all",
                     location.pathname === item.href
                       ? "text-primary bg-primary/10"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                   )}
+                  aria-current={location.pathname === item.href ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
               ))}
               <Button variant="hero" className="mt-2" asChild>
-                <Link to="/mixing" onClick={() => setIsOpen(false)}>
+                <Link to="/mixing" onClick={closeMenu}>
                   Start Mixing
                 </Link>
               </Button>

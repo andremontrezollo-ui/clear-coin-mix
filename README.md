@@ -1,73 +1,133 @@
-# Welcome to your Lovable project
+# Welcome to ShadowMix
 
-## Project info
+A privacy-focused Bitcoin mixing service built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Project Overview
 
-## How can I edit this code?
+ShadowMix is a web application that provides Bitcoin transaction privacy services through a mixing mechanism that breaks the link between input and output addresses.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: shadcn/ui (Radix UI primitives)
+- **Routing**: React Router v6
+- **State Management**: React Query (TanStack Query)
+- **Form Validation**: Zod
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/
+│   ├── home/           # Homepage sections
+│   ├── layout/         # Layout components (Header, Footer, Layout)
+│   ├── mixing/         # Mixing flow components
+│   └── ui/             # shadcn/ui components
+├── hooks/              # Custom React hooks
+├── lib/                # Utilities and configuration
+│   ├── constants.ts    # Application constants
+│   ├── utils.ts        # Utility functions
+│   └── validation.ts   # Input validation schemas
+├── pages/              # Page components
+└── test/               # Test configuration
 ```
 
-**Edit a file directly in GitHub**
+## Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Prerequisites
 
-**Use GitHub Codespaces**
+- Node.js 18+ or Bun
+- npm, yarn, or bun
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Getting Started
 
-## What technologies are used for this project?
+```bash
+# Install dependencies
+npm install
 
-This project is built with:
+# Start development server
+npm run dev
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Build for production
+npm run build
 
-## How can I deploy this project?
+# Run tests
+npm test
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+# Type checking
+npm run typecheck
 
-## Can I connect a custom domain to my Lovable project?
+# Linting
+npm run lint
+```
 
-Yes, you can!
+### Environment Variables
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project does not require any environment variables for frontend operation. All configuration is handled through `src/lib/constants.ts`.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+For backend functionality (when implemented via Lovable Cloud):
+- API keys and secrets should be stored in Lovable Cloud secrets
+- Never commit secrets to the repository
+
+## Security Considerations
+
+### Input Validation
+
+All user inputs are validated using Zod schemas:
+- Bitcoin addresses are validated against standard patterns (Legacy, P2SH, Bech32, Bech32m)
+- Contact form inputs are sanitized and length-limited
+- All validation occurs both client-side and server-side (when backend is implemented)
+
+### Best Practices Implemented
+
+- ✅ No hardcoded secrets in codebase
+- ✅ Input sanitization and validation
+- ✅ XSS prevention through React's built-in escaping
+- ✅ Secure random ID generation using `crypto.getRandomValues()`
+- ✅ Proper TypeScript types for type safety
+- ✅ Component-level separation of concerns
+- ✅ Lazy loading for performance optimization
+
+### Recommendations for Production
+
+1. **Backend Security**: Implement server-side validation for all operations
+2. **Rate Limiting**: Add rate limiting for form submissions
+3. **CSP Headers**: Configure Content Security Policy headers
+4. **HTTPS**: Ensure all traffic is served over HTTPS
+5. **Monitoring**: Implement error tracking and monitoring
+6. **Auditing**: Regular security audits of dependencies
+
+## Deployment
+
+The application can be deployed via Lovable's publish feature:
+
+1. Open the project in Lovable
+2. Click Share → Publish
+3. Optionally configure a custom domain
+
+## Architecture Principles
+
+The project follows these architectural principles (documented in `docs/backend/`):
+
+- **Separation of Responsibilities**: Each module has a single purpose
+- **Low Coupling / High Cohesion**: Components communicate through well-defined interfaces
+- **Privacy by Architecture**: Minimal data collection and segregated contexts
+- **Security by Design**: Defense in depth, no secrets in application code
+- **Controlled Auditability**: Privacy-preserving logging
+
+## Contributing
+
+When contributing to this project:
+
+1. Follow the existing code style and conventions
+2. Add proper TypeScript types
+3. Validate all user inputs
+4. Use semantic design tokens from the design system
+5. Write meaningful commit messages
+6. Test your changes before submitting
+
+## License
+
+This project is proprietary. All rights reserved.
