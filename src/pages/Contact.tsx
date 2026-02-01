@@ -12,18 +12,70 @@ import {
   Key,
   AlertCircle
 } from "lucide-react";
+import { contactFormSchema, generateTicketId, type ContactFormData } from "@/lib/validation";
+import { VALIDATION_LIMITS } from "@/lib/constants";
+import { useClipboard } from "@/hooks/useClipboard";
+
+interface FormErrors {
+  subject?: string;
+  message?: string;
+  replyContact?: string;
+}
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [formData, setFormData] = useState<ContactFormData>({
+    subject: "",
+    message: "",
+    replyContact: "",
+  });
+  const { copied, copy } = useClipboard();
+
+  const handleChange = (field: keyof ContactFormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Generate a random ticket ID
-    const id = `TKT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    
+    // Validate form data
+    const result = contactFormSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: FormErrors = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof FormErrors;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    // Generate secure ticket ID
+    const id = generateTicketId();
     setTicketId(id);
     setSubmitted(true);
+    setErrors({});
   };
+
+  const handleNewMessage = () => {
+    setSubmitted(false);
+    setTicketId("");
+    setFormData({ subject: "", message: "", replyContact: "" });
+    setErrors({});
+  };
+
+  const pgpKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQINBGXxxx... (example key)
+...
+-----END PGP PUBLIC KEY BLOCK-----`;
 
   return (
     <Layout>
@@ -55,7 +107,7 @@ export default function Contact() {
                       Send Message
                     </h2>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                       <div>
                         <Label htmlFor="subject" className="text-muted-foreground">
                           Subject
@@ -63,9 +115,15 @@ export default function Contact() {
                         <Input
                           id="subject"
                           placeholder="Briefly describe your question"
-                          className="mt-2"
-                          required
+                          className={`mt-2 ${errors.subject ? "border-destructive" : ""}`}
+                          value={formData.subject}
+                          onChange={(e) => handleChange("subject", e.target.value)}
+                          maxLength={VALIDATION_LIMITS.subject.maxLength}
+                          autoComplete="off"
                         />
+                        {errors.subject && (
+                          <p className="text-xs text-destructive mt-1">{errors.subject}</p>
+                        )}
                       </div>
 
                       <div>
@@ -75,9 +133,21 @@ export default function Contact() {
                         <Textarea
                           id="message"
                           placeholder="Detail your question or issue"
-                          className="mt-2 min-h-[150px]"
-                          required
+                          className={`mt-2 min-h-[150px] ${errors.message ? "border-destructive" : ""}`}
+                          value={formData.message}
+                          onChange={(e) => handleChange("message", e.target.value)}
+                          maxLength={VALIDATION_LIMITS.message.maxLength}
                         />
+                        <div className="flex justify-between mt-1">
+                          {errors.message ? (
+                            <p className="text-xs text-destructive">{errors.message}</p>
+                          ) : (
+                            <span />
+                          )}
+                          <span className="text-xs text-muted-foreground">
+                            {formData.message.length}/{VALIDATION_LIMITS.message.maxLength}
+                          </span>
+                        </div>
                       </div>
 
                       <div>
@@ -87,11 +157,19 @@ export default function Contact() {
                         <Input
                           id="reply"
                           placeholder="Email, PGP key, Session ID, etc."
-                          className="mt-2"
+                          className={`mt-2 ${errors.replyContact ? "border-destructive" : ""}`}
+                          value={formData.replyContact}
+                          onChange={(e) => handleChange("replyContact", e.target.value)}
+                          maxLength={VALIDATION_LIMITS.replyContact.maxLength}
+                          autoComplete="off"
                         />
-                        <p className="text-xs text-muted-foreground mt-2">
-                          You can leave blank and use the ticket ID to check replies
-                        </p>
+                        {errors.replyContact ? (
+                          <p className="text-xs text-destructive mt-1">{errors.replyContact}</p>
+                        ) : (
+                          <p className="text-xs text-muted-foreground mt-2">
+                            You can leave blank and use the ticket ID to check replies
+                          </p>
+                        )}
                       </div>
 
                       <Button variant="hero" type="submit" className="w-full">
@@ -116,7 +194,7 @@ export default function Contact() {
                       <p className="text-sm text-muted-foreground mb-2">
                         Ticket ID
                       </p>
-                      <code className="text-2xl font-mono font-bold text-primary">
+                      <code className="text-2xl font-mono font-bold text-primary select-all">
                         {ticketId}
                       </code>
                     </div>
@@ -128,7 +206,7 @@ export default function Contact() {
                     <Button
                       variant="outline"
                       className="mt-6"
-                      onClick={() => setSubmitted(false)}
+                      onClick={handleNewMessage}
                     >
                       Send new message
                     </Button>
@@ -191,15 +269,23 @@ export default function Contact() {
                   </h3>
                   <div className="p-4 rounded-lg bg-secondary font-mono text-xs text-muted-foreground overflow-x-auto">
                     <pre className="whitespace-pre-wrap break-all">
-{`-----BEGIN PGP PUBLIC KEY BLOCK-----
-
-mQINBGXxxx... (example key)
-...
------END PGP PUBLIC KEY BLOCK-----`}
+                      {pgpKey}
                     </pre>
                   </div>
-                  <Button variant="ghost" size="sm" className="mt-4">
-                    Copy Full Key
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="mt-4"
+                    onClick={() => copy(pgpKey)}
+                  >
+                    {copied ? (
+                      <>
+                        <CheckCircle2 className="h-4 w-4 mr-2 text-success" />
+                        Copied!
+                      </>
+                    ) : (
+                      "Copy Full Key"
+                    )}
                   </Button>
                 </div>
 
